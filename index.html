@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" />
+  </head>
+  <body>
+    <!-- The text field -->
+    <div class="code-block">
+      <pre>
+        <code class="language-javascript" id="code-snippet">
+                function helloWorld() {
+                    console.log("Hello, world!");
+                }
+            </code>
+        </pre>
+      <button id="copyButton" onclick="copyCode()">Copy Code</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-javascript.min.js"></script>
+  </body>
+</html>
+
+<style>
+  /* .code-block {
+background-color: black;
+  } */
+
+  pre {
+    background-color: #0d0d0d !important;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    width: 50%;
+    margin: auto !important;
+  }
+  code {
+    color: white !important;
+    text-shadow: none !important; /* Remove text shadow */
+    /* text-align: center !important; */
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .pressed {
+    background-color: green; /* Change background color when pressed */
+    color: white; /* Change text color when pressed */
+    border: none;
+  }
+</style>
+
+<script>
+  function copyCode() {
+    // Get the text of the code snippet
+    var codeSnippet = document.getElementById("code-snippet").innerText;
+    // Get the button element
+    var button = document.getElementById("copyButton");
+
+    // Change button text to "Code Copied!"
+    button.textContent = "Code Copied!";
+    // Add the "pressed" class to the button
+    button.classList.add("pressed");
+    // Reset button text and remove the "pressed" class after a short delay
+
+    setTimeout(function () {
+      button.textContent = "Copy Code";
+      button.classList.remove("pressed");
+    }, 2000);
+
+    // Create a textarea element to hold the code snippet text
+    var textarea = document.createElement("textarea");
+    textarea.value = codeSnippet;
+
+    // Append the textarea to the body
+    document.body.appendChild(textarea);
+
+    // Select the text within the textarea
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the selected text
+    document.execCommand("copy");
+
+    // Remove the textarea
+    document.body.removeChild(textarea);
+
+    // Alert the user that the code has been copied
+    alert("Code copied to clipboard!");
+  }
+  //   Prism.highlightAll();
+</script>
